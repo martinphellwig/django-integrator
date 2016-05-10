@@ -1,0 +1,17 @@
+"""
+PyPi Setup file.
+"""
+from distutils.core import setup
+
+setup(
+  name = 'Django-Integrator',
+  packages = ['django_integrator'],
+  version = '0.1.0',
+  description = 'Tool for integrating compliant 3rd party django apps',
+  author = 'Martin P. Hellwig',
+  author_email = 'martin.hellwig@gmail.com',
+  url = 'https://bitbucket.org/hellwig/django-integrator',
+  download_url = 'https://bitbucket.org/hellwig/django-integrator/downloads',
+  keywords = ['django'],
+  classifiers = [],
+)
