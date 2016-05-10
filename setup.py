@@ -1,6 +1,7 @@
 """
 PyPi Setup file.
 """
+# pylint: disable=no-name-in-module, import-error
 from distutils.core import setup
 
 setup(
