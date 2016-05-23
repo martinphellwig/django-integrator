@@ -1,0 +1,2 @@
+-r interface/requirements.txt
+-r application/requirements.txt
