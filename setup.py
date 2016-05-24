@@ -18,5 +18,6 @@ setup(
   keywords = ['django'],
   license = 'BSD',
   classifiers = ['Programming Language :: Python :: 3',],
+  install_requires = ['django'],
 )
 
