@@ -7,7 +7,7 @@ gateway interface file.
 Please note that the default license is set to BSD.
 """
 import argparse
-import create
+from . import create
 
 def main():
     """
