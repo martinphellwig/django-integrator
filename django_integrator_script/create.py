@@ -104,7 +104,7 @@ def _create_requirements(configuration):
 def _copy_into_project(configuration):
     "Copy the files into the projects root."
     to_copy = [['README.txt', 'README.txt'],
-               ['setup.cfg', 'setup.cfg']]
+               ['setup_cfg.txt', 'setup.cfg']]
 
     for source, target in to_copy:
         source = source = os.path.join(configuration['templates'], source)
@@ -130,7 +130,7 @@ def _append_integrator_imports(configuration):
 
 def _write_devset(configuration):
     "write the developer reset."
-    read_name = 'developer_reset_py.txt'
+    read_name = 'devset_py.txt'
     write_name = 'devset.py'
     with open(os.path.join(configuration['templates'],
                            read_name), 'r') as file_read:
