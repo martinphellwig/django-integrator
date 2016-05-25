@@ -29,7 +29,6 @@ def main():
     parser.add_argument('email',
         help='Your or your companies email address.')
 
-
     args = parser.parse_args()
     tmp = {'name':args.pypi_name,
            'class':args.django_app_class_name,
@@ -38,3 +37,6 @@ def main():
            'email':args.email}
 
     create.main(tmp)
+
+if __name__ == '__main__':
+    main()

@@ -22,7 +22,7 @@ CLASSIFIERS = [
     ]
 
 REQUIREMENTS = [
-    'Django>',
+    'Django',
     'django-integrator',
     ]
 
