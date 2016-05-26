@@ -93,7 +93,7 @@ def _create_requirements(configuration):
 
     # interface requirements
     with open(os.path.join('interface', 'requirements.txt'), 'w') as file_write:
-        file_write.write('Django\ncoverage<4.0.0\npylint\nipython\n')
+        file_write.write('coverage<4.0.0\npylint\nipython\n')
         file_write.write('django-integrator\n')
 
     # development requirements
