@@ -99,7 +99,8 @@ def _create_requirements(configuration):
     # development requirements
     with open('requirements.txt', 'w') as file_write:
         file_write.write('-r interface/requirements.txt\n')
-        file_write.write('-r application/requirements.txt\n')
+        text = '-r %s/requirements.txt\n' % configuration['django_app_name']
+        file_write.write(text)
 
 def _copy_into_project(configuration):
     "Copy the files into the projects root."
