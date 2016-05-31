@@ -51,6 +51,18 @@ def _copy_files(configuration):
             os.remove(target)
         shutil.copy(source, target)
 
+def _move_test(configuration):
+    "Move the test file to the test module and rename it."
+    source = os.path.join(configuration['django_app_name'], 'tests.py')
+    target = os.path.join(configuration['django_app_name'],
+                          'tests', 'test_main.py')
+    shutil.move(source, target)
+    # make the init.
+    target = os.path.join(configuration['django_app_name'],
+                          'tests', '__init__.py')
+    with open(target, 'w'):
+        pass
+
 def _move_inits(configuration):
     "move modules that have the same name as the folder as an init to that dir."
     items = os.listdir(configuration['django_app_name'])
@@ -182,7 +194,7 @@ def _write_setup(configuration):
 
 PROCESS = [
     _create_project, _create_application, _create_folders, _copy_files,
-    _move_inits, _make_inits_commands, _make_contents_tools,
+    _move_test, _move_inits, _make_inits_commands, _make_contents_tools,
     _create_requirements, _copy_into_project, _append_integrator_imports,
     _write_devset, _write_license, _write_info, _write_setup]
 
