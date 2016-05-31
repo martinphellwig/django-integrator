@@ -12,6 +12,8 @@ __info__.LABELS['path'] = _
 
 def _ready(self):
     from . import signals
+    from .tools import sanitize
+    sanitize.main()
     return _APPCFG.ready(self)
 
 _ = globals()

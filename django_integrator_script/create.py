@@ -90,10 +90,13 @@ def _make_contents_tools(configuration):
                            'tools', '__init__.py'), 'w'):
         pass
 
-    source = os.path.join(configuration['templates'], 'models_py.txt')
-    target = os.path.join(configuration['django_app_name'],
-                          'tools', 'models.py')
-    shutil.copy(source, target)
+    to_copy = [['models_py.txt', 'models.py'],
+               ['sanitize_py.txt', 'sanitize.py']]
+
+    for row in to_copy:
+        source = os.path.join(configuration['templates'], row[0])
+        target = os.path.join(configuration['django_app_name'], 'tools', row[1])
+        shutil.copy(source, target)
 
 
 def _create_requirements(configuration):
