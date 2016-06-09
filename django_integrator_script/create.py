@@ -22,7 +22,8 @@ def _create_application(configuration):
     "create the application in the project."
     cmd = [sys.executable, os.path.join(configuration['dir'], 'manage.py'),
            'startapp', configuration['django_app_name']]
-    os.popen(' '.join(cmd))
+    popen = os.popen(' '.join(cmd))
+    popen.close()
 
 
 def _create_folders(configuration):
@@ -144,6 +145,13 @@ def _append_integrator_imports(configuration):
         file_append.write('import django_integrator\n')
         file_append.write('django_integrator.add_urlpatterns(urlpatterns)')
 
+def _remove_files(configuration):
+    "Remove files we don't need"
+    filenames = ['apps.py']
+    for filename in filenames:
+        path = os.path.join(configuration['django_app_name'], filename)
+        os.remove(path)
+
 def _write_devset(configuration):
     "write the developer reset."
     read_name = 'devset_py.txt'
@@ -199,7 +207,7 @@ PROCESS = [
     _create_project, _create_application, _create_folders, _copy_files,
     _move_test, _move_inits, _make_inits_commands, _make_contents_tools,
     _create_requirements, _copy_into_project, _append_integrator_imports,
-    _write_devset, _write_license, _write_info, _write_setup]
+    _remove_files, _write_devset, _write_license, _write_info, _write_setup]
 
 def main(configuration, cwd_original=None):
     "main functionality"
