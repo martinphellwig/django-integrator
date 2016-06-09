@@ -201,9 +201,11 @@ PROCESS = [
     _create_requirements, _copy_into_project, _append_integrator_imports,
     _write_devset, _write_license, _write_info, _write_setup]
 
-def main(configuration):
+def main(configuration, cwd_original=None):
     "main functionality"
-    cwd_original = os.path.abspath(os.getcwd())
+    if cwd_original is None:
+        cwd_original = os.path.abspath(os.getcwd())
+
     configuration['dir'] =  os.path.join(cwd_original,
                                          configuration['name'].strip().lower())
     os.mkdir(configuration['dir'])
