@@ -5,7 +5,7 @@ PyPi Setup file.
 from distutils.core import setup
 VERSION = '0.1.9'
 BASE_URL = 'https://bitbucket.org/hellwig/django-integrator'
-SCRIPT = 'mk_django_integrator_app='\
+SCRIPT = 'django-integrator-create='\
          'django_integrator_script.make_application:main'
 
 setup(

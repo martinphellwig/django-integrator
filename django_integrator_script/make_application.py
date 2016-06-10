@@ -38,5 +38,3 @@ def main():
 
     create.main(tmp)
 
-if __name__ == '__main__':
-    main()
