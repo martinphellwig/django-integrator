@@ -5,13 +5,13 @@ import os
 import stat
 import shutil
 import sys
-import time
 import datetime
 import http.client
 from django.core.management.commands import startproject
 
 PYPI = 'pypi.python.org'
 PATH = '/pypi/%s/json'
+CWD = os.path.abspath(os.getcwd())
 
 def _get_pypi_response(path):
     "Simple https get function."
@@ -55,8 +55,6 @@ def _create_folders(configuration):
     "create folders"
     folders = ['documentation', 'models', 'tools', 'tests', 'views',
                os.path.join('management', 'commands'),]
-    while not os.path.exists(configuration['django_app_name']):
-        time.sleep(0.1)
 
     for folder in folders:
         os.makedirs(os.path.join(configuration['django_app_name'], folder))
@@ -235,12 +233,9 @@ PROCESS = [
     _append_integrator_imports, _remove_files, _write_devset, _write_license,
     _write_info, _write_setup]
 
-def main(configuration, cwd_original=None):
+def main(configuration, cwd=CWD):
     "main functionality"
-    if cwd_original is None:
-        cwd_original = os.path.abspath(os.getcwd())
-
-    configuration['dir'] =  os.path.join(cwd_original,
+    configuration['dir'] =  os.path.join(cwd,
                                          configuration['name'].strip().lower())
     os.mkdir(configuration['dir'])
     _ = os.path.dirname(os.path.abspath(__file__))
@@ -253,4 +248,4 @@ def main(configuration, cwd_original=None):
     for function in PROCESS:
         function(configuration)
 
-    os.chdir(cwd_original)
+    os.chdir(cwd)
