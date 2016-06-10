@@ -7,7 +7,32 @@ import shutil
 import sys
 import time
 import datetime
+import http.client
 from django.core.management.commands import startproject
+
+PYPI = 'pypi.python.org'
+PATH = '/pypi/%s/json'
+
+def _get_pypi_response(path):
+    "Simple https get function."
+    connection = http.client.HTTPSConnection(PYPI)
+    connection.request('GET', path)
+    response = connection.getresponse()
+    connection.close()
+    return response
+
+def _check_pypi(configuration):
+    "Query pip if the package name already exists"
+    path = PATH % configuration['name']
+    response = _get_pypi_response(path)
+    while response.status == 301:
+        header = dict(response.getheaders())
+        response = _get_pypi_response(header['Location'])
+
+    if response.status == 200:
+        text = 'PyPi has already a package named: %s' % configuration['name']
+        raise ValueError(text)
+
 
 def _create_project(configuration):
     "create the project"
@@ -204,10 +229,11 @@ def _write_setup(configuration):
             file_write.write(text)
 
 PROCESS = [
-    _create_project, _create_application, _create_folders, _copy_files,
-    _move_test, _move_inits, _make_inits_commands, _make_contents_tools,
-    _create_requirements, _copy_into_project, _append_integrator_imports,
-    _remove_files, _write_devset, _write_license, _write_info, _write_setup]
+    _check_pypi, _create_project, _create_application, _create_folders,
+    _copy_files, _move_test, _move_inits, _make_inits_commands,
+    _make_contents_tools, _create_requirements, _copy_into_project,
+    _append_integrator_imports, _remove_files, _write_devset, _write_license,
+    _write_info, _write_setup]
 
 def main(configuration, cwd_original=None):
     "main functionality"
