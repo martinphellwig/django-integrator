@@ -1,3 +1,4 @@
 django
 pylint
 coverage<4
+pip

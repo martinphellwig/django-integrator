@@ -20,7 +20,7 @@ setup(
   keywords = ['django'],
   license = 'BSD',
   classifiers = ['Programming Language :: Python :: 3',],
-  install_requires = ['django'],
+  install_requires = ['django', 'pip'],
   entry_points = {'console_scripts':[SCRIPT]},
   package_data={'django_integrator_script': ['templates/*.txt']},
 )

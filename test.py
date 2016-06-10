@@ -10,8 +10,8 @@ from django_integrator_script import create
 
 class Test(unittest.TestCase):
     def setUp(self):
-        self.cfg = {'name':'test-application',
-                    'class':'TestApplication',
+        self.cfg = {'name':'django-integrator-testname',
+                    'class':'DjangoIntegratorTestname',
                     'verbose':'Test Application',
                     'author':'Firstname Lastname',
                     'email':'first.last@example.com'}
@@ -25,6 +25,11 @@ class Test(unittest.TestCase):
         path = os.path.join(self.tempdir, self.cfg['name'],
                             self.cfg['django_app_name'])
         self.assertNotIn('apps.py', os.listdir(path=path))
+
+    def test_check_pypi(self):
+        tmp = self.cfg.copy()
+        tmp['name'] = 'django-integrator'
+        self.assertRaises(ValueError, create._check_pypi, tmp)
 
 
 
