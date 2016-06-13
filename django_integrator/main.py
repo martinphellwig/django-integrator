@@ -19,12 +19,13 @@ def _listmerge(source, target):
     # target = [first, nil, one, two, last]
     items = source[::-1]
     index = None
+    insert = len(target)
     while len(items) > 0:
         item = items.pop(0)
         if item in target:
             index = target.index(item)
         elif index is None:
-            target.append(item)
+            target.insert(insert, item)
         else:
             target.insert(index, item)
             index = None
@@ -49,22 +50,24 @@ class _Importer(object):
             if key == 'URLCONF':
                 path = path.split('.', 1)[0]
                 _PATTERNS.append(path + '.' + value)
+            elif self._first_merge:
+                _ = self.settings['TARGET'][key]
+                if key in MERGABLES:
+                    _ = _[::]
+                self.settings['ORIGIN'][key] = _
 
             if key in MERGABLES:
                 _listmerge(value, self.settings['TARGET'][key])
-                continue
-
-            if key in self.settings['TARGET'] and self._first_merge:
-                self.settings['ORIGIN'][key] = self.settings['TARGET'][key]
-
-            self.settings['TARGET'][key] = value
+            else:
+                self.settings['TARGET'][key] = value
 
         if self._first_merge:
             self._first_merge = False
 
     def restore(self, key):
         "Restore value from original"
-        self.settings['TARGET'][key] = self.settings['ORIGIN'][key]
+        value = self.settings['ORIGIN'][key][::]
+        self.settings['TARGET'][key] = value
 
     def import_(self, module_path_string):
         "Import using the module_path_string"

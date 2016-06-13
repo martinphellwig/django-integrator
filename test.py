@@ -60,22 +60,10 @@ class Test001Script(unittest.TestCase):
         sys.argv = argv_orig
         self.assertEqual(5, len(tmp[0]))
 
-def _setup():
-    cfg = {'name':'django-integrator-testname',
-           'class':'DjangoIntegratorTestname',
-           'verbose':'Test Application',
-           'author':'Firstname Lastname',
-           'email':'first.last@example.com'}
-
-    cfg['tmp'] = tempfile.mkdtemp()
-
-    create.main(cfg, cfg['tmp'])
-    path = os.path.join(cfg['tmp'], cfg['name'])
-    sys.path.insert(0, path)
-    cfg['settings_orig'] = os.environ.get('DJANGO_SETTINGS_MODULE', None)
-    os.environ['DJANGO_SETTINGS_MODULE'] = 'interface.settings'
-
-    # remove the last lines in the settings file that import django_integrator
+def _strip_interface_settings(path):
+    """
+    Strip the last lines in the settings file that have the django
+    integrator settings defined."""
     file_path = os.path.join(path, 'interface', 'settings.py')
     with open(file_path, 'r+') as file_open:
         tmp = file_open.readlines()[:-4]
@@ -83,8 +71,32 @@ def _setup():
         file_open.truncate()
         for line in tmp:
             file_open.write(line)
-            
-    # Will need to change the app settings.py to add an APP.
+
+def _modify_app_settings(cfg):
+    "Modify the app settings for testing purposes"
+    path = os.path.join(cfg['tmp'], cfg['name'], cfg['django_app_name'],
+                        'settings.py')
+
+    with open(path, 'r+') as file_open:
+        file_open.seek(0, 2)
+        file_open.write("INSTALLED_APPS=['django.contrib.humanize']")
+
+def _setup():
+    cfg = {'name':'django-integrator-testname',
+           'class':'DjangoIntegratorTestname',
+           'verbose':'Test Application',
+           'author':'Firstname Lastname',
+           'email':'first.last@example.com',
+           'tmp':tempfile.mkdtemp()}
+
+    create.main(cfg, cfg['tmp'])
+    path = os.path.join(cfg['tmp'], cfg['name'])
+    sys.path.insert(0, path)
+    cfg['settings_orig'] = os.environ.get('DJANGO_SETTINGS_MODULE', None)
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'interface.settings'
+
+    _strip_interface_settings(path)
+    _modify_app_settings(cfg)
 
     return cfg
 
@@ -99,30 +111,50 @@ def _teardown(cfg):
 
 
 class Test002Integrator(unittest.TestCase):
-    def setUp(self):
-        self.cfg = _setup()
-
-    def tearDown(self):
-        _teardown(self.cfg)
-
     def test_000(self):
+        cfg = _setup()
         import django_integrator
         import django_integrator.main
-        django_integrator.add_application(self.cfg['django_app_name'])
-        settings = self.cfg['django_app_name'] + '.settings'
-        django_integrator.add_settings(settings)
-        tmp = list()
-        django_integrator.add_urlpatterns(tmp)
+
         key = 'INSTALLED_APPS'
         one = django_integrator.main._IMPORTER.settings['TARGET'][key][::]
-        print(django_integrator.main._IMPORTER.settings['ORIGIN'])
-        django_integrator.main._IMPORTER.restore(key)
-        
+        django_integrator.add_application(cfg['django_app_name'])
         two = django_integrator.main._IMPORTER.settings['TARGET'][key][::]
         self.assertNotEqual(one, two)
+        #
+        django_integrator.main._IMPORTER.restore(key)
+        nil = django_integrator.main._IMPORTER.settings['TARGET'][key][::]
+        self.assertNotEqual(two, nil)
+        #
+        tmp = list()
+        django_integrator.main.add_urlpatterns(tmp)
+        self.assertTrue(len(tmp) > 0)
+        #
+        django_integrator.add_settings(cfg['django_app_name'] + '.settings')
 
-        print(one)
-        
+        _teardown(cfg)
+
+    def test_001_list_merge(self):
+        "test the list merge function."
+        source = ['4', '5', '6']
+        target = ['1', '2', '3']
+        expect = target[::] + source[::]
+
+        import django_integrator.main
+        django_integrator.main._listmerge(source, target)
+        self.assertEqual(expect, target)
+
+    def test_002_list_merge_insert(self):
+        "test list merge for inserting."
+        source = ['nil', 'one', 'last']
+        target = ['first', 'one', 'two']
+        expect = ['first', 'nil', 'one', 'two', 'last']
+
+        import django_integrator.main
+        django_integrator.main._listmerge(source, target)
+        self.assertEqual(expect, target)
+
+
 
 
 
