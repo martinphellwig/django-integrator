@@ -7,7 +7,6 @@ import shutil
 import sys
 import datetime
 import http.client
-from django.core.management.commands import startproject
 
 PYPI = 'pypi.python.org'
 PATH = '/pypi/%s/json'
@@ -36,6 +35,7 @@ def _check_pypi(configuration):
 
 def _create_project(configuration):
     "create the project"
+    from django.core.management.commands import startproject
     command = startproject.Command()
     options = {'pythonpath': None, 'name': 'interface', 'files': [],
                'verbosity': 1, 'extensions': ['py'], 'no_color': False,
