@@ -1,5 +1,6 @@
 .. image:: https://codeship.com/projects/8c6d7510-148d-0134-3d1b-7a5ab8a25fce/status?branch=default
 .. image:: https://coveralls.io/repos/bitbucket/hellwig/django-integrator/badge.svg?branch=master
+.. image:: https://img.shields.io/pypi/v/django-integrator.svg
 #################
 Django Integrator
 #################
