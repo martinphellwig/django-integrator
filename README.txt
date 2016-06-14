@@ -1,6 +1,9 @@
 .. image:: https://img.shields.io/codeship/8c6d7510-148d-0134-3d1b-7a5ab8a25fce/default.svg
-.. image:: https://coveralls.io/repos/bitbucket/hellwig/django-integrator/badge.svg?branch=master
+.. image:: https://coveralls.io/repos/bitbucket/hellwig/django-integrator/badge.svg?branch=master 
+   :target: https://coveralls.io/bitbucket/hellwig/django-integrator?branch=master
 .. image:: https://img.shields.io/pypi/v/django-integrator.svg
+   :target: https://pypi.python.org/pypi/Django-Integrator/
+   
 
 #################
 Django Integrator
