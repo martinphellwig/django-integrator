@@ -154,9 +154,6 @@ class Test002Integrator(unittest.TestCase):
         django_integrator.main._listmerge(source, target)
         self.assertEqual(expect, target)
 
-    def test_004_fail_alwasy(self):
-        self.assertTrue(False, msg='Testing the codeship!')
-
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
