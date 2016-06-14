@@ -3,7 +3,7 @@ PyPi Setup file.
 """
 # pylint: disable=no-name-in-module, import-error
 from distutils.core import setup
-VERSION = '0.9.0'
+VERSION = '0.9.1'
 BASE_URL = 'https://bitbucket.org/hellwig/django-integrator'
 SCRIPT = 'django-integrator-create='\
          'django_integrator_script.make_application:main'
