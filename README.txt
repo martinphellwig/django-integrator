@@ -1,4 +1,4 @@
-
+.. image:: https://codeship.com/projects/8c6d7510-148d-0134-3d1b-7a5ab8a25fce/status?branch=default
 #################
 Django Integrator
 #################
@@ -36,23 +36,23 @@ created in. Then issue the command:
 $ django-integrator-create pypi_name django_app_class_name verbose_name author email
 The parameters mean the following:
 
-pypi_name: 
-- The name of this application as it would be in the PyPI register, the program
+pypi_name:
+  The name of this application as it would be in the PyPI register, the program
   will do a query to determine if the name is available (at the time).
   The actual importable name will be the pypi_name with '-' replaced with
   underscores.
  
 django_app_class_name:
-- The name that the application class (as in the apps.py) will have in Django.
+  The name that the application class (as in the apps.py) will have in Django.
 
 verbose_name:
-- The name as the app will be displayed in, for example, the admin interface.
+  The name as the app will be displayed in, for example, the admin interface.
 
 author:
-- Your name
+  Your name
 
 email:
-- Your email address
+  Your email address
 
 This will create a new project, with some additional files and adjusted layouts
 compared to the default django one. Most notably, the interface folder contains
