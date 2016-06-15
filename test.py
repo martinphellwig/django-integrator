@@ -153,6 +153,10 @@ class Test002Integrator(unittest.TestCase):
         import django_integrator.main
         django_integrator.main._listmerge(source, target)
         self.assertEqual(expect, target)
+        
+    def test_003_on_purpose_fail(self):
+        "Fail because we want to test if the codeship does send a failed info."
+        self.assertTrue(False, "Fail on purpose to test bitbucket integration")
 
 
 if __name__ == "__main__":
