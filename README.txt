@@ -116,9 +116,13 @@ appreciated. Time permitting I will have a serious look at any pull requests.
 Can I do something more that this?
 ----------------------------------
 Wow! Are you sure? Well if you are really sure, and that would be fantastic, you
-can put a couple of bugs in the tip hat AKA patreon account:
-http://patreon.com/hellwig ,thank you very much! This will help me improve the
-quality of my existing projects and help launch some more open-source projects. 
+can leave your donation in the tip hat AKA patreon account;
+http://patreon.com/hellwig 
+
+Thank you very much! Your donation will help me towards my end-goal of a
+grid-independent small holding where I automate the sh*t out of it. In the mean
+time I'll keep building stuff and where possible and practical open-source them
+under the BSD license.  
 
 
 
