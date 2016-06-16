@@ -120,9 +120,9 @@ can leave your donation in the tip hat AKA patreon account;
 http://patreon.com/hellwig 
 
 Thank you very much! Your donation will help me towards my end-goal of a
-grid-independent small holding where I automate the sh*t out of it. In the mean
-time I'll keep building stuff and where possible and practical open-source them
-under the BSD license.  
+grid-independent small holding where I automate the sh*t out of it :-). In the
+mean time I'll keep building stuff and where possible and practical open-source
+them under the BSD license.  
 
 
 
