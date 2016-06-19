@@ -1,27 +1,45 @@
 """
 PyPi Setup file.
 """
+import os
 # pylint: disable=no-name-in-module, import-error
 from setuptools import setup
-VERSION = '1.0.0.9'
-BASE_URL = 'https://bitbucket.org/hellwig/django-integrator'
+
+NAME = 'Django-Integrator'
+DESCRIPTION = 'Create and use django-integrator compliant applications.'
+VERSION = '1.0.0.10'
+LICENSE = 'BSD'
+AUTHOR = 'Martin P. Hellwig'
+AUTHOR_EMAIL = 'martin.hellwig@gmail.com'
+#
+URL_MAIN = "https://bitbucket.org/hellwig/" + NAME + '/'
+DOWNLOAD_ID = os.environ.get('CI_COMMIT_ID', VERSION)
+URL_DOWNLOAD = URL_MAIN + 'get/' + DOWNLOAD_ID + '.zip'
+#
+PACKAGES = ['django_integrator', 'django_integrator_script']
+PACKAGE_DATA  = {'django_integrator_script': ['templates/*.txt']}
 SCRIPT = 'django-integrator-create='\
          'django_integrator_script.make_application:main'
+KEYWORDS = [
+    'django',
+    ]
+CLASSIFIERS = [
+    'Programming Language :: Python :: 3',
+    ]
+REQUIREMENTS = [
+    'Django',
+    'pip',
+    ]
 
-setup(
-  name = 'Django-Integrator',
-  packages = ['django_integrator', 'django_integrator_script'],
-  version = VERSION,
-  description = 'Create and use django-integrator compliant applications.',
-  author = 'Martin P. Hellwig',
-  author_email = 'martin.hellwig@gmail.com',
-  url = BASE_URL,
-  download_url = BASE_URL + '/get/' + VERSION + '.zip',
-  keywords = ['django'],
-  license = 'BSD',
-  classifiers = ['Programming Language :: Python :: 3',],
-  install_requires = ['django', 'pip'],
-  entry_points = {'console_scripts':[SCRIPT]},
-  package_data={'django_integrator_script': ['templates/*.txt']},
-)
 
+################################################################################
+
+KWARGS = {
+    'name':NAME, 'packages':PACKAGES, 'version':VERSION,
+    'description':DESCRIPTION, 'author':AUTHOR, 'author_email':AUTHOR_EMAIL,
+    'url':URL_MAIN, 'download_url':URL_DOWNLOAD, 'keywords':KEYWORDS,
+    'license':LICENSE, 'classifiers':CLASSIFIERS,
+    'install_requires':REQUIREMENTS, 'package_data':PACKAGE_DATA,
+    'entry_points':{'console_scripts':[SCRIPT]},}
+
+setup(**KWARGS)
