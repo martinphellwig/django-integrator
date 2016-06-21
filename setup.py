@@ -7,7 +7,7 @@ from setuptools import setup
 
 NAME = 'Django-Integrator'
 DESCRIPTION = 'Create and use django-integrator compliant applications.'
-VERSION = '1.0.0.10'
+VERSION = '1.0.1.1'
 LICENSE = 'BSD'
 AUTHOR = 'Martin P. Hellwig'
 AUTHOR_EMAIL = 'martin.hellwig@gmail.com'
