@@ -79,7 +79,8 @@ def _modify_app_settings(cfg):
 
     with open(path, 'r+') as file_open:
         file_open.seek(0, 2)
-        file_open.write("INSTALLED_APPS=['django.contrib.humanize']")
+        file_open.write("INSTALLED_APPS=['django.contrib.humanize']\n")
+        file_open.write("SOME_LOCAL_VAR='var'\n")
 
 def _setup():
     cfg = {'name':'django-integrator-testname',
@@ -113,7 +114,6 @@ def _teardown(cfg):
 class Test002Integrator(unittest.TestCase):
     def test_000(self):
         cfg = _setup()
-        import django_integrator
         import django_integrator.main
 
         key = 'INSTALLED_APPS'
