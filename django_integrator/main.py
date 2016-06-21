@@ -50,7 +50,7 @@ class _Importer(object):
             if key == 'URLCONF':
                 path = path.split('.', 1)[0]
                 _PATTERNS.append(path + '.' + value)
-            elif self._first_merge:
+            elif self._first_merge and key in self.settings['TARGET']:
                 _ = self.settings['TARGET'][key]
                 if key in MERGABLES:
                     _ = _[::]
