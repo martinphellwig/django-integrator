@@ -4,6 +4,10 @@
    :target: https://coveralls.io/bitbucket/hellwig/django-integrator?branch=default
 .. image:: https://img.shields.io/pypi/v/django-integrator.svg
    :target: https://pypi.python.org/pypi/Django-Integrator/
+.. image:: https://img.shields.io/badge/Donate-PayPal-blue.svg
+   :target: https://paypal.me/MartinHellwig
+.. image:: https://img.shields.io/badge/Donate-Patreon-orange.svg
+   :target: https://www.patreon.com/hellwig
    
 
 #################
@@ -96,35 +100,36 @@ this will overwrite previous defined urls if the path clashes.
 
 What license is this?
 =====================
-Two-clause BSD, this license is also used when creating a new application with
-this tool, obviously this is just a template and you can change the license in
-your own application to whatever you think is the most appropriate. However I
-would like to encourage you not to change the license and perhaps even consider
-uploading your app to pypi.
+Two-clause BSD
+
 
 How can I get support?
 ======================
-The tools I publish have already taken me considerable effort which I have given
-away free of charge, if you require guaranteed support please contact me via
-e-mail so we can discuss my fee.
-
-How can I give you support?
-===========================
-Feedback, suggestions and comments via the repo's bug tracker are always
-appreciated. Time permitting I will have a serious look at any pull requests. 
-
-Can I do something more that this?
-----------------------------------
-Wow! Are you sure? Well if you are really sure, and that would be fantastic, you
-can leave your donation in the tip hat AKA patreon account;
-http://patreon.com/hellwig 
-
-Thank you very much! Your donation will help me towards my end-goal of a
-grid-independent small holding where I automate the sh*t out of it :-). In the
-mean time I'll keep building stuff and where possible and practical open-source
-them under the BSD license.  
+Please use the repo's bug tracker to leave behind any questions, feedback,
+suggestions and comments. I will handle them depending on my time and what looks
+interesting. If you require guaranteed support please contact me via
+e-mail so we can discuss appropriate compensation.
 
 
+Signing Off
+===========
+Is my work helpful or valuable to you? You can repay me by donating via:
+
+https://paypal.me/MartinHellwig
+
+.. image:: https://img.shields.io/badge/PayPal-MartinHellwig-blue.svg
+  :target: https://paypal.me/MartinHellwig
+  :alt: Donate via PayPal.Me
+  :scale: 120 %
+
+-or-
+
+https://www.patreon.com/hellwig
+
+.. image:: https://img.shields.io/badge/Patreon-hellwig-orange.svg
+  :target: https://www.patreon.com/hellwig
+  :alt: Donate via Patreon
+  :scale: 120 %
 
 
-
+Thank you!
