@@ -17,7 +17,7 @@ Django Integrator
 What is it?
 ===========
 - A library to conveniently import and use an integrator compliant applications.
-- A tool for stating a new Django project with the focus on creating a single
+- A tool for starting a new Django project with the focus on creating a
   distributable application.
 
 
@@ -86,13 +86,19 @@ upload the app to PyPi.
 Library
 -------
 At the end of the inteface.settings file you see the following lines:
->>> import django_integrator
->>> django_integrator.add_application('your_app_name')
-To add more applications to your system simply repeat the last line.
 
-URL wise you can see that in interface.urls the following lines are at the end
->>> import django_integrator
->>> django_integrator.add_urlpatterns(urlpatterns)
+.. sourcecode:: shell
+
+  >>> import django_integrator
+  >>> django_integrator.add_application('your_app_name')
+
+To add more applications to your system simply repeat the last line.
+URL wise you can see that in interface.urls the following lines are at the end:
+
+.. sourcecode:: shell
+
+  >>> import django_integrator
+  >>> django_integrator.add_urlpatterns(urlpatterns)
 
 This will add all the applications urls to the server urls file, be careful as
 this will overwrite previous defined urls if the path clashes.
