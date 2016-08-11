@@ -4,8 +4,8 @@ Unit Test module
 """
 # pylint:disable=R0904,C0111,W0212
 import unittest
-import os
 import sys
+import os
 import tempfile
 import shutil
 from django_integrator_script import create, make_application
@@ -141,7 +141,7 @@ class Test002Integrator(unittest.TestCase):
         expect = target[::] + source[::]
 
         import django_integrator.main
-        django_integrator.main._listmerge(source, target)
+        django_integrator.main._merger(source, target)
         self.assertEqual(expect, target)
 
     def test_002_list_merge_insert(self):
@@ -151,7 +151,7 @@ class Test002Integrator(unittest.TestCase):
         expect = ['first', 'nil', 'one', 'two', 'last']
 
         import django_integrator.main
-        django_integrator.main._listmerge(source, target)
+        django_integrator.main._merger(source, target)
         self.assertEqual(expect, target)
 
 if __name__ == "__main__":

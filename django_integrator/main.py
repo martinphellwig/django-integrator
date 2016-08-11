@@ -8,7 +8,7 @@ import os
 MERGABLES = ['INSTALLED_APPS', 'MIDDLEWARE_CLASSES', 'TEMPLATES']
 _PATTERNS = []
 
-def _listmerge(source, target):
+def _merger(source, target):
     "Merges items from the source list into the target list"
     # If an item in source is already in target, then the item before it will be
     # inserted before in the target, for example a source of
@@ -57,7 +57,7 @@ class _Importer(object):
                 self.settings['ORIGIN'][key] = _
 
             if key in MERGABLES:
-                _listmerge(value, self.settings['TARGET'][key])
+                _merger(value, self.settings['TARGET'][key])
             else:
                 self.settings['TARGET'][key] = value
 
