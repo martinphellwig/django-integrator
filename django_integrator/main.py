@@ -67,7 +67,10 @@ class _Importer(object):
             elif self._first_merge and key in self.settings['TARGET']:
                 _ = self.settings['TARGET'][key]
                 if key in MERGABLES:
-                    _ = _[::]
+                    if isinstance(_, (list, tuple)):
+                        _ = _[::]
+                    elif isinstance(_, dict):
+                        _ = _.copy()
                 self.settings['ORIGIN'][key] = _
 
             if key in MERGABLES:
