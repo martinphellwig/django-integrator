@@ -4,8 +4,8 @@ Unit Test module
 """
 # pylint:disable=R0904,C0111,W0212
 import unittest
-import sys
 import os
+import sys
 import tempfile
 import shutil
 from django_integrator_script import create, make_application
@@ -141,7 +141,7 @@ class Test002Integrator(unittest.TestCase):
         expect = target[::] + source[::]
 
         import django_integrator.main
-        django_integrator.main._merger(source, target)
+        django_integrator.main._merger_list(source, target)
         self.assertEqual(expect, target)
 
     def test_002_list_merge_insert(self):
@@ -151,8 +151,25 @@ class Test002Integrator(unittest.TestCase):
         expect = ['first', 'nil', 'one', 'two', 'last']
 
         import django_integrator.main
-        django_integrator.main._merger(source, target)
+        django_integrator.main._merger_list(source, target)
         self.assertEqual(expect, target)
+
+    def test_003_dict_merge(self):
+        "test list merge for inserting."
+        source = {'one':1}
+        target = {'two':2}
+        expect = {'one':1, 'two':2}
+
+        import django_integrator.main
+        django_integrator.main.merger(source, target)
+        self.assertEqual(expect, target)
+
+    def test_004_unmergable(self):
+        "test if we get an exception."
+        import django_integrator.main
+        self.assertRaises(NotImplementedError, django_integrator.main.merger,
+                          int(), list())
+
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']

@@ -5,11 +5,11 @@ Main module.
 import importlib
 import os
 
-MERGABLES = ['INSTALLED_APPS', 'MIDDLEWARE_CLASSES', 'TEMPLATES']
+MERGABLES = ['INSTALLED_APPS', 'MIDDLEWARE_CLASSES', 'TEMPLATES', 'DATABASES']
 _PATTERNS = []
 
-def _merger(source, target):
-    "Merges items from the source list into the target list"
+def _merger_list(source, target):
+    "Merges list items from the source into target."
     # If an item in source is already in target, then the item before it will be
     # inserted before in the target, for example a source of
     # source = [nil, one, last]
@@ -29,6 +29,20 @@ def _merger(source, target):
         else:
             target.insert(index, item)
             index = None
+
+def _merger_dict(source, target):
+    "Merges dict items from the source into target."
+    target.update(source)
+
+def merger(source, target):
+    "Merge source into target"
+    if isinstance(source, (list, tuple)):
+        _merger_list(source, target)
+    elif isinstance(source, dict):
+        _merger_dict(source, target)
+    else:
+        text = "Merging of source type %s not implemented." % type(source)
+        raise NotImplementedError(text)
 
 
 class _Importer(object):
@@ -57,7 +71,7 @@ class _Importer(object):
                 self.settings['ORIGIN'][key] = _
 
             if key in MERGABLES:
-                _merger(value, self.settings['TARGET'][key])
+                merger(value, self.settings['TARGET'][key])
             else:
                 self.settings['TARGET'][key] = value
 
