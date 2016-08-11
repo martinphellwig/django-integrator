@@ -4,8 +4,8 @@ Unit Test module
 """
 # pylint:disable=R0904,C0111,W0212
 import unittest
-import os
 import sys
+import os
 import tempfile
 import shutil
 from django_integrator_script import create, make_application
@@ -81,6 +81,9 @@ def _modify_app_settings(cfg):
         file_open.seek(0, 2)
         file_open.write("INSTALLED_APPS=['django.contrib.humanize']\n")
         file_open.write("SOME_LOCAL_VAR='var'\n")
+        file_open.write("DATABASES={'cenvars':"
+                        "{'ENGINE':'django.db.backends.sqlite3',"
+                        "'NAME':':memory:'}}\n")
 
 def _setup():
     cfg = {'name':'django-integrator-testname',
