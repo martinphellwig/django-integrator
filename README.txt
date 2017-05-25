@@ -44,7 +44,11 @@ Create
 ------
 To create a new project go to the folder where you want the new project to be
 created in. Then issue the command: 
-$ django-integrator-create pypi_name django_app_class_name verbose_name author email
+
+.. sourcecode:: shell
+
+  $ django-integrator-create pypi_name django_app_class_name verbose_name author email
+
 The parameters mean the following:
 
 pypi_name:
@@ -87,7 +91,7 @@ Library
 -------
 At the end of the inteface.settings file you see the following lines:
 
-.. sourcecode:: shell
+.. sourcecode:: python
 
   >>> import django_integrator
   >>> django_integrator.add_application('your_app_name')
@@ -95,7 +99,7 @@ At the end of the inteface.settings file you see the following lines:
 To add more applications to your system simply repeat the last line.
 URL wise you can see that in interface.urls the following lines are at the end:
 
-.. sourcecode:: shell
+.. sourcecode:: python
 
   >>> import django_integrator
   >>> django_integrator.add_urlpatterns(urlpatterns)
